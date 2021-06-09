@@ -12,55 +12,57 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.empresa.entity.Alumno;
-import com.empresa.service.AlumnoService;
+import com.empresa.entity.Noticia;
+import com.empresa.service.NoticiaService;
 
 import lombok.extern.apachecommons.CommonsLog;
 
 @CommonsLog
 @RestController
-@RequestMapping("/rest/alumno")
-public class AlumnoController {
+@RequestMapping("/rest/noticia")
+public class NoticiaController {
 	
 
 	@Autowired
-	private AlumnoService service;
+	private NoticiaService service;
 
 	@GetMapping
-	public ResponseEntity<List<Alumno>> lista(){
-		log.info(">>> lista ");
-		return ResponseEntity.ok(service.listaAlumno());
+	public ResponseEntity<List<Noticia>> lista(){
+		//log.info(">>> lista ");
+		return ResponseEntity.ok(service.listaNoticia());
 	}
 	
 	@PostMapping
-	public ResponseEntity<Alumno> registra(@RequestBody Alumno obj){
-		log.info(">>> registra " + obj.getIdAlumno());
-		return ResponseEntity.ok(service.insertaActualizaAlumno(obj));
+	public ResponseEntity<Noticia> registra(@RequestBody Noticia obj){
+		//log.info(">>> registra " + obj.getIdNoticia());
+		System.out.println("registra" + obj.getIdNoticia());
+		return ResponseEntity.ok(service.insertaActualizaNoticia(obj));
 	}
 	
 	@PutMapping
-	public ResponseEntity<Alumno> actualiza(@RequestBody Alumno obj){
-		log.info(">>> actualiza " + obj.getIdAlumno());
-		Optional<Alumno> optAlumnmo =   service.obtienePorId(obj.getIdAlumno());
+	public ResponseEntity<Noticia> actualiza(@RequestBody Noticia obj){
+		//log.info(">>> actualiza " + obj.getIdNoticia());
+		Optional<Noticia> optAlumnmo =   service.obtienePorId(obj.getIdNoticia());
 		if (optAlumnmo.isPresent()) {
-			return ResponseEntity.ok(service.insertaActualizaAlumno(obj));	
+			return ResponseEntity.ok(service.insertaActualizaNoticia(obj));	
 		}else {
-			log.error(">>> actualiza " + obj.getIdAlumno() + " no encontrado");
+			//log.error(">>> actualiza " + obj.getIdNoticia() + " no encontrado");
 			return ResponseEntity.notFound().build();
 		}
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Alumno> elimina(@PathVariable("id") int idAlumno){
-		log.info(">>> elimina " + idAlumno);
-		Optional<Alumno> optAlumno =   service.obtienePorId(idAlumno);
-		if (optAlumno.isPresent()) {
-			service.eliminaAlumno(idAlumno);
-			return ResponseEntity.ok(optAlumno.get());
+	public ResponseEntity<Noticia> elimina(@PathVariable("id") int idNoticia){
+		//log.info(">>> elimina " + idNoticia);
+		Optional<Noticia> optNoticia =   service.obtienePorId(idNoticia);
+		if (optNoticia.isPresent()) {
+			service.eliminaNoticia(idNoticia);
+			return ResponseEntity.ok(optNoticia.get());
 		}else {
-			log.error(">>> elimina " + idAlumno + " no encontrado");
+			//log.error(">>> elimina " + idNoticia + " no encontrado");
 			return ResponseEntity.notFound().build();
 		}
 	}

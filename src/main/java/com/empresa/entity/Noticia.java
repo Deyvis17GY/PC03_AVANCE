@@ -16,32 +16,27 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
-@Table(name = "alumno")
-public class Alumno {
+@Table(name = "tb_noticia")
+public class Noticia {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "idalumno")
-	private Integer idAlumno;
+	@Column(name = "idNoticia")
+	private Integer idNoticia;
 	
 	private String nombre;
 	
-	private String dni;
+	private String titular;
 	
-	private String correo;
+	private String comentario;
+	
+	private String tipo;
+	
 	
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date fechaNacimiento;
-
-	public Integer getIdAlumno() {
-		return idAlumno;
-	}
-
-	public void setIdAlumno(Integer idAlumno) {
-		this.idAlumno = idAlumno;
-	}
+	private Date fecha;
 
 	public String getNombre() {
 		return nombre;
@@ -51,29 +46,46 @@ public class Alumno {
 		this.nombre = nombre;
 	}
 
-	public String getDni() {
-		return dni;
+	public Date getfecha() {
+		return fecha;
 	}
 
-	public void setDni(String dni) {
-		this.dni = dni;
+	public void setfecha(Date fecha) {
+		this.fecha = fecha;
 	}
 
-	public String getCorreo() {
-		return correo;
+	public Integer getIdNoticia() {
+		return idNoticia;
 	}
 
-	public void setCorreo(String correo) {
-		this.correo = correo;
+	public void setIdNoticia(Integer idNoticia) {
+		this.idNoticia = idNoticia;
 	}
 
-	public Date getFechaNacimiento() {
-		return fechaNacimiento;
+	public String getTitular() {
+		return titular;
 	}
 
-	public void setFechaNacimiento(Date fechaNacimiento) {
-		this.fechaNacimiento = fechaNacimiento;
+	public void setTitular(String titular) {
+		this.titular = titular;
 	}
 
+	public String getComentario() {
+		return comentario;
+	}
+
+	public void setComentario(String comentario) {
+		this.comentario = comentario;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	
 	
 }

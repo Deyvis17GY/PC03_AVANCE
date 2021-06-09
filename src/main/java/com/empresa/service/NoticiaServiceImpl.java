@@ -6,50 +6,37 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.empresa.entity.Alumno;
-import com.empresa.repository.AlumnoRepository;
+import com.empresa.entity.Noticia;
+import com.empresa.repository.NoticiaRepository;
 
 @Service
-public class AlumnoServiceImpl implements AlumnoService {
+public class NoticiaServiceImpl implements NoticiaService {
 
 	@Autowired
-	private AlumnoRepository repository;
+	private NoticiaRepository repository;
 
 	@Override
-	public List<Alumno> listaAlumno() {
+	public List<Noticia> listaNoticia() {
 		return repository.findAll();
 	}
 
 	@Override
-	public Alumno insertaActualizaAlumno(Alumno obj) {
+	public Noticia insertaActualizaNoticia(Noticia obj) {
 		return repository.save(obj);
 	}
 
 	@Override
-	public void eliminaAlumno(int id) {
+	public void eliminaNoticia(int id) {
 		repository.deleteById(id);
 	}
 
-	@Override
-	public List<Alumno> listaAlumnoPorNombreLike(String filtro) {
-		return repository.listaAlumnoPorNombreLike(filtro);
-	}
 
 	@Override
-	public Optional<Alumno> obtienePorId(int idAlumno) {
-		return repository.findById(idAlumno);
+	public Optional<Noticia> obtienePorId(int idNoticia) {
+		return repository.findById(idNoticia);
 	}
 
-	@Override
-	public List<Alumno> listaPorDni(String dni) {
-		return repository.findByDni(dni);
-	}
 
-	@Override
-	public List<Alumno> listaPorDni(String dni, int idAlumno) {
-		return repository.findByDniAndIdAlumnoNot(dni, idAlumno);
-	}
 
-	
 
 }
